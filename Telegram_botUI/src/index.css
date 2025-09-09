@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Define your custom properties and theme in CSS */
+@theme {
+  --color-telegram-bg: var(--tg-theme-bg-color, #0d1c1f);
+  --color-telegram-text: var(--tg-theme-text-color, #ffffff);
+  --color-telegram-button: var(--tg-theme-button-color, #00ff7f);
+  --color-telegram-secondary-bg: var(--tg-theme-secondary-bg-color, #142b2e);
+  --color-custom-dark: #0d1c1f;
+  --color-custom-dark-secondary: #142b2e;
+  --color-custom-green: #00ff7f;
+  --color-custom-light-green: #00ffb3;
+
+  --animate-pulse-slow: pulse 3s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f;
+  }
+  100% {
+    text-shadow: 0 0 15px #40e0d0, 0 0 30px #40e0d0;
+  }
+}
+
+/* Base styles */
+body {
+  background-color: #0d1c1f;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer base {
+  body {
+    background-color: #0d1c1f;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      sans-serif;
+  }
+}
+
+@layer components {
+  .bg-gradient-telegram {
+    background: linear-gradient(135deg, #0d1c1f 0%, #142b2e 100%);
+  }
+
+  /* Stronger glowing green text */
+  .text-glow {
+    color: #00ff7f;
+    text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f, 0 0 30px #40e0d0;
+  }
+
+  .bg-custom-dark {
+    background-color: #0d1c1f;
+  }
+
+  .bg-custom-dark-secondary {
+    background-color: #142b2e;
+  }
+
+  .border-custom-green {
+    border-color: rgba(0, 255, 127, 0.3);
+  }
+
+  .bg-custom-green-transparent {
+    background-color: rgba(0, 255, 127, 0.1);
+  }
+
+  .bg-custom-white-transparent {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
