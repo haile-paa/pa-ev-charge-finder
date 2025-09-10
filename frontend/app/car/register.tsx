@@ -27,7 +27,7 @@ type CarData = {
 };
 
 const BACKEND_IP = "pa-ev-charge-finder-back.onrender.com";
-const BASE_URL = `http://${BACKEND_IP}`;
+const BASE_URL = `https://${BACKEND_IP}`;
 
 const CarRegistrationScreen = () => {
   const router = useRouter();

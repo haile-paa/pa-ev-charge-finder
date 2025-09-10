@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <!-- Allow cleartext traffic for your backend domain -->
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">https://pa-ev-charge-finder-back.onrender.com</domain>
+    <!-- If using IP address -->
+    <domain includeSubdomains="true">https://pa-ev-charge-finder-back.onrender.com</domain>
+  </domain-config>
+  
+  <!-- Base configuration -->
+  <base-config cleartextTrafficPermitted="false">
+    <trust-anchors>
+      <certificates src="system" />
+    </trust-anchors>
+  </base-config>
+</network-security-config>

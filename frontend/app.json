@@ -2,7 +2,7 @@
   "expo": {
     "name": "EV Charge Finder",
     "slug": "ev-charge-finder",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/Y.png",
     "scheme": "EV Plug",
@@ -17,7 +17,9 @@
         "backgroundColor": "#0D1C1F"
       },
       "edgeToEdgeEnabled": true,
-      "package": "PA.Ev"
+      "package": "PA.Ev",
+      "usesCleartextTraffic": true,
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"]
     },
     "web": {
       "bundler": "metro",
