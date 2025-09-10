@@ -26,8 +26,8 @@ type CarData = {
   tirePressure: string;
 };
 
-const BACKEND_IP = "192.168.1.8";
-const BASE_URL = `http://${BACKEND_IP}:4000`;
+const BACKEND_IP = "pa-ev-charge-finder-back.onrender.com";
+const BASE_URL = `http://${BACKEND_IP}`;
 
 const CarRegistrationScreen = () => {
   const router = useRouter();

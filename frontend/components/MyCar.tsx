@@ -6,10 +6,12 @@ import {
   StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from "expo-location";
 import { Ionicons, MaterialIcons, Entypo } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 // Car data type
 type CarData = {
@@ -77,6 +79,7 @@ const weatherIcons: Record<number, { condition: string; icon: string }> = {
 };
 
 const MyCar = () => {
+  const router = useRouter();
   const [carData, setCarData] = useState<CarData | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"Car Status" | "Climate">(
@@ -143,6 +146,30 @@ const MyCar = () => {
     }
   };
 
+  const handleLogout = async () => {
+    // Show confirmation dialog
+    Alert.alert("Confirm Logout", "Are you sure you want to logout?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Yes, Logout",
+        onPress: async () => {
+          try {
+            await AsyncStorage.removeItem("token");
+            await AsyncStorage.removeItem("userCar");
+            Alert.alert("Success", "Logged out successfully!");
+            router.replace("/"); // Navigate back to home/registration screen
+          } catch (error) {
+            console.error("Error logging out:", error);
+            Alert.alert("Error", "Failed to logout");
+          }
+        },
+      },
+    ]);
+  };
+
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
@@ -164,7 +191,14 @@ const MyCar = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{carData.carType}</Text>
+      {/* Header with title and logout button */}
+      <View style={styles.header}>
+        <Text style={styles.title}>{carData.carType}</Text>
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
+          <Ionicons name='log-out-outline' size={24} color='#FF3B30' />
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
 
       <Image
         source={require("../assets/images/car.png")}
@@ -284,11 +318,29 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   centered: { justifyContent: "center", alignItems: "center" },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
+  },
   title: {
     color: "#fff",
     fontSize: 22,
     fontWeight: "600",
-    textAlign: "center",
+  },
+  logoutButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 59, 48, 0.2)",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+  },
+  logoutText: {
+    color: "#FF3B30",
+    marginLeft: 5,
+    fontWeight: "500",
   },
   noCarText: {
     color: "#aaa",

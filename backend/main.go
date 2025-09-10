@@ -8,7 +8,8 @@ import (
 
 	"github.com/haile-paa/pa-ev-charge-finder/config"
 	"github.com/haile-paa/pa-ev-charge-finder/handlers"
-	"github.com/haile-paa/pa-ev-charge-finder/middleware"
+
+	// "github.com/haile-paa/pa-ev-charge-finder/middleware"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -49,7 +50,7 @@ func main() {
 	r := gin.Default()
 
 	// Middleware
-	r.Use(middleware.CORSMiddleware(cfg.AllowedOrigin))
+	// r.Use(middleware.CORSMiddleware(cfg.AllowedOrigin))
 
 	// Initialize handlers
 	authHandler := handlers.NewAuthHandler(collection, cfg)
